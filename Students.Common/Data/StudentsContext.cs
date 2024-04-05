@@ -13,17 +13,16 @@ public class StudentsContext : DbContext
 
     public DbSet<Student> Student { get; set; } = default!;
     public DbSet<Subject> Subject { get; set; } = default!;
-
-    public DbSet<LectureHall> LectureHalls { get; set; } = default!;
-
-    public DbSet<Book> Books { get; set; } = default!;  
-
     public DbSet<StudentSubject> StudentSubject { get; set; } = default!;
+
+    public DbSet<Book> Books { get; set; } = default!;
+    //public DbSet<LectureHall> LectureHalls { get; set; } = default!;
+    public DbSet<ResearchWorker> ResearchWorker { get; set; } = default!;  
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Book>().HasKey(b => b.Id);
+        //modelBuilder.Entity<Book>().HasKey(b => b.Id);
 
         modelBuilder.Entity<StudentSubject>()
             .HasKey(ss => new { ss.StudentId, ss.SubjectId });
