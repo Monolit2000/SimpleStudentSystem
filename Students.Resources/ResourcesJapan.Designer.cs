@@ -97,6 +97,15 @@ namespace Students.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на 定員.
+        /// </summary>
+        public static string Capacity {
+            get {
+                return ResourceManager.GetString("Capacity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на 選択科目.
         /// </summary>
         public static string ChosenSubjects {
@@ -156,6 +165,15 @@ namespace Students.Resources {
         public static string Edit {
             get {
                 return ResourceManager.GetString("Edit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на 学生インデックス.
+        /// </summary>
+        public static string Index_of_students {
+            get {
+                return ResourceManager.GetString("Index of students", resourceCulture);
             }
         }
         

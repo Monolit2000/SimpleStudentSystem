@@ -9,12 +9,16 @@ namespace Students.Common.Models
 {
     public class Book
     {
-        //[Key]
         public int Id { get; set; }
 
         public string Name { get; set; } = string.Empty;
 
-        public Student StudentOwner { get; set; } = default!;
+        public string Author { get; set; } = string.Empty;
+
+        public Book()
+        {
+
+        }
 
         public Book(string name)
         {

@@ -1,6 +1,6 @@
-﻿@using Students.Interfaces
+﻿@model IEnumerable<Student>
+@using Students.Interfaces
 @using System.Globalization
-@model IEnumerable<Student>
 
 @inject ISharedResourcesService sharedResourcesService
 
@@ -10,11 +10,11 @@
 }
 
 
-<h1>Index of students</h1>
+<h1>@sharedResourcesService.GetString("Index of students", cultureInfo)</h1>
 
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">@sharedResourcesService.GetString("CreateNew", cultureInfo)  </a>
 </p>
 <table class="table">
     <thead>

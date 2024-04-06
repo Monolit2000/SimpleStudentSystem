@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Students.Common.Data;
 
@@ -11,9 +12,11 @@ using Students.Common.Data;
 namespace Students.Common.Migrations
 {
     [DbContext(typeof(StudentsContext))]
-    partial class StudentsContextModelSnapshot : ModelSnapshot
+    [Migration("20240406082610_AddLectureHallMigration")]
+    partial class AddLectureHallMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,17 +33,18 @@ namespace Students.Common.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Author")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("StudentOwnerId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Book");
+                    b.HasIndex("StudentOwnerId");
+
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("Students.Common.Models.LectureHall", b =>
@@ -149,6 +153,17 @@ namespace Students.Common.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subject");
+                });
+
+            modelBuilder.Entity("Students.Common.Models.Book", b =>
+                {
+                    b.HasOne("Students.Common.Models.Student", "StudentOwner")
+                        .WithMany()
+                        .HasForeignKey("StudentOwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("StudentOwner");
                 });
 
             modelBuilder.Entity("Students.Common.Models.Student", b =>

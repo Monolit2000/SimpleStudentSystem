@@ -6,6 +6,8 @@ public interface IDatabaseService
 {
     #region Student
 
+    Student? DisplayStudent(int? id);
+
     Task<IList<Student>> GetOllStudentsAsync();
 
     Task<Student?> GetStudentAsync(int? id);
@@ -45,6 +47,35 @@ public interface IDatabaseService
 
     #endregion
 
+    #region Lecture Hall 
 
-    Student? DisplayStudent(int? id);
+    Task<LectureHall?> GetLectureHallAsync(int? Id);
+
+    Task<IList<LectureHall>> GetOllLectureHallAsync();
+
+    Task CreateLectureHallAsync(LectureHall lectureHall);
+
+    Task UpdateLectureHallAsync(LectureHall lectureHall);
+
+    Task DeleteLectureHall(int id);
+
+    bool LectureHallExists(int id);
+
+    #endregion
+
+    #region Book
+    Task<Book?> GetBookAsync(int? Id);
+
+    Task<IList<Book>> GetOllBookAsync();
+
+    Task CreateBookAsync(Book lectureHall);
+
+    Task UpdateBookAsync(Book lectureHall);
+
+    Task DeleteBookAsync(int id);
+
+    bool BookExists(int id);
+
+    #endregion
+
 }

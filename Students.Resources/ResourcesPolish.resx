@@ -129,6 +129,9 @@
   <data name="BackToList" xml:space="preserve">
     <value>Powrót do listy</value>
   </data>
+  <data name="Capacity" xml:space="preserve">
+    <value>Pojemność</value>
+  </data>
   <data name="ChosenSubjects" xml:space="preserve">
     <value>Wybrane tematy</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>Edytuj</value>
+  </data>
+  <data name="Index of students" xml:space="preserve">
+    <value>Indeks studentów</value>
   </data>
   <data name="IndexOfSubjects" xml:space="preserve">
     <value>Indeks tematów</value>

@@ -3,6 +3,14 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:StudentsContext"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:StudentsWebContextDelet"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:StudentsWebContext"
     }
   }
 }

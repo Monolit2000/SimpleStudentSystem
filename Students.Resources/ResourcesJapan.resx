@@ -129,6 +129,9 @@
   <data name="BackToList" xml:space="preserve">
     <value>リストに戻る</value>
   </data>
+  <data name="Capacity" xml:space="preserve">
+    <value>定員</value>
+  </data>
   <data name="ChosenSubjects" xml:space="preserve">
     <value>選択科目</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Edit" xml:space="preserve">
     <value>編集</value>
+  </data>
+  <data name="Index of students" xml:space="preserve">
+    <value>学生インデックス</value>
   </data>
   <data name="IndexOfSubjects" xml:space="preserve">
     <value>主題索引</value>

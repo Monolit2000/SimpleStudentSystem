@@ -15,8 +15,8 @@ public class StudentsContext : DbContext
     public DbSet<Subject> Subject { get; set; } = default!;
     public DbSet<StudentSubject> StudentSubject { get; set; } = default!;
 
-    public DbSet<Book> Books { get; set; } = default!;
-    //public DbSet<LectureHall> LectureHalls { get; set; } = default!;
+    public DbSet<Book> Book { get; set; } = default!;
+    public DbSet<LectureHall> LectureHall { get; set; } = default!;
     public DbSet<ResearchWorker> ResearchWorker { get; set; } = default!;  
 
 
