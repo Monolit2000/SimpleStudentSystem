@@ -53,9 +53,10 @@ public interface IDatabaseService
 
     Task<IList<LectureHall>> GetOllLectureHallAsync();
 
-    Task CreateLectureHallAsync(LectureHall lectureHall);
+    Task<LectureHall?> GetLectureHallWithSubjectsAsync(int? id);
+    Task CreateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst);
 
-    Task UpdateLectureHallAsync(LectureHall lectureHall);
+    Task UpdateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst);
 
     Task DeleteLectureHall(int id);
 
@@ -75,6 +76,23 @@ public interface IDatabaseService
     Task DeleteBookAsync(int id);
 
     bool BookExists(int id);
+
+    #endregion
+
+    #region ResearchWorker
+
+    Task<ResearchWorker?> GetResearchWorkerAsync(int? Id);
+
+    Task<IList<ResearchWorker>> GetOllResearchWorkerAsync();
+
+    Task CreateResearchWorkerAsync(ResearchWorker researchWorker);
+
+    Task UpdateResearchWorkerAsync(ResearchWorker researchWorker);
+
+    Task DeleteResearchWorkerAsync(int? id);
+
+    bool ResearchWorkerExists(int id);
+
 
     #endregion
 

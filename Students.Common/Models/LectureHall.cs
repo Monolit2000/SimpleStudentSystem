@@ -19,12 +19,17 @@ namespace Students.Common.Models
         [StringLength(100)]
         public string Name { get; set; } = string.Empty;
 
-        [NotMapped]
-        public ICollection<Student> Students { get; private set; } = new List<Student>();
+        public ICollection<Subject> Subjects { get; set; } = new List<Subject>();
 
-        public void AddStudent(Student student)
+
+        [NotMapped]
+        public List<Subject> AvailableSubjects { get; set; } = new List<Subject>();
+
+
+        public void AddSubject(Subject subject)
         {
-            Students.Add(student);
+
+            Subjects.Add(subject);
         }
 
     }

@@ -33,6 +33,9 @@
             <div class="form-group">
                 <input type="submit" value="@sharedResourcesService.GetString("Save", cultureInfo)" class="btn btn-primary" />
             </div>
+            <div class="form-group">
+                <partial name="_LectureHolleSubjectsChoicePartial" model="Model" />
+            </div>
         </form>
     </div>
 </div>
@@ -43,4 +46,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/lectureHall_subjects.js"></script>
+
 }

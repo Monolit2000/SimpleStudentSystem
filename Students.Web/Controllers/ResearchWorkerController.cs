@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using Students.Interfaces;
 using Students.Common.Data;
 using Students.Common.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Students.Web.Controllers
 {
     public class ResearchWorkerController : Controller
     {
-        private readonly StudentsContext _context;
+        //private readonly StudentsContext _context;
 
-        public ResearchWorkerController(StudentsContext context)
+        private readonly IDatabaseService _databaseService;
+
+        public ResearchWorkerController(StudentsContext context, IDatabaseService databaseService)
         {
-            _context = context;
+            //_context = context;
+            _databaseService = databaseService;
         }
 
         // GET: ResearchWorkers
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ResearchWorker.ToListAsync());
+            return View(await _databaseService.GetOllResearchWorkerAsync());
         }
 
         // GET: ResearchWorkers/Details/5
@@ -33,8 +32,8 @@ namespace Students.Web.Controllers
                 return NotFound();
             }
 
-            var researchWorker = await _context.ResearchWorker
-                .FirstOrDefaultAsync(m => m.id == id);
+            var researchWorker = await _databaseService.GetResearchWorkerAsync(id);
+
             if (researchWorker == null)
             {
                 return NotFound();
@@ -54,12 +53,12 @@ namespace Students.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("id,Name,Age")] ResearchWorker researchWorker)
+        public async Task<IActionResult> Create([Bind("Id,Name,Age")] ResearchWorker researchWorker)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(researchWorker);
-                await _context.SaveChangesAsync();
+                await _databaseService.CreateResearchWorkerAsync(researchWorker);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(researchWorker);
@@ -73,7 +72,8 @@ namespace Students.Web.Controllers
                 return NotFound();
             }
 
-            var researchWorker = await _context.ResearchWorker.FindAsync(id);
+            var researchWorker = await _databaseService.GetResearchWorkerAsync(id);
+
             if (researchWorker == null)
             {
                 return NotFound();
@@ -86,9 +86,9 @@ namespace Students.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Name,Age")] ResearchWorker researchWorker)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age")] ResearchWorker researchWorker)
         {
-            if (id != researchWorker.id)
+            if (id != researchWorker.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,11 @@ namespace Students.Web.Controllers
             {
                 try
                 {
-                    _context.Update(researchWorker);
-                    await _context.SaveChangesAsync();
+                    await _databaseService.UpdateResearchWorkerAsync(researchWorker);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ResearchWorkerExists(researchWorker.id))
+                    if (!ResearchWorkerExists(researchWorker.Id))
                     {
                         return NotFound();
                     }
@@ -124,8 +123,8 @@ namespace Students.Web.Controllers
                 return NotFound();
             }
 
-            var researchWorker = await _context.ResearchWorker
-                .FirstOrDefaultAsync(m => m.id == id);
+            var researchWorker = await _databaseService.GetResearchWorkerAsync(id);
+
             if (researchWorker == null)
             {
                 return NotFound();
@@ -139,19 +138,14 @@ namespace Students.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var researchWorker = await _context.ResearchWorker.FindAsync(id);
-            if (researchWorker != null)
-            {
-                _context.ResearchWorker.Remove(researchWorker);
-            }
+            await _databaseService.DeleteResearchWorkerAsync(id);
 
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ResearchWorkerExists(int id)
         {
-            return _context.ResearchWorker.Any(e => e.id == id);
+            return _databaseService.ResearchWorkerExists(id);
         }
     }
 }

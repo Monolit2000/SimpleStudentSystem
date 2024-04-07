@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Students.Common.Data;
 using Students.Common.Models;
@@ -285,22 +286,171 @@ public class DatabaseService : IDatabaseService
     public async Task<LectureHall?> GetLectureHallAsync(int? Id)
     {
 
-        var lectureHall = await _context.LectureHall
+        var lectureHall = await _context.LectureHall.Include(x => x.Subjects)
             .FirstOrDefaultAsync(m => m.Id == Id);
 
         return lectureHall;
 
     }
-    public async Task CreateLectureHallAsync(LectureHall lectureHall)
+
+    public async Task<LectureHall?> GetLectureHallWithSubjectsAsync(int? id)
     {
+
+        //var student = await GetStudentAsync(id);
+
+        //if (student == null)
+        //    return student;
+
+        //var chosenSubjects = _context.StudentSubject
+        //    .Where(ss => ss.StudentId == id)
+        //    .Select(ss => ss.Subject)
+        //    .ToList();
+
+        //var availableSubjects = _context.Subject
+        //    .Where(s => !chosenSubjects.Contains(s))
+        //    .ToList();
+
+        //student.StudentSubjects = _context.StudentSubject
+        //    .Where(x => x.StudentId == id)
+        //    .ToList();
+
+        //student.AvailableSubjects = availableSubjects;
+
+        //return student;
+
+
+
+
+        var lectureHall = await GetLectureHallAsync(id);
+
+        if (lectureHall == null)
+            return lectureHall;
+
+
+
+        var chosenSubjects = lectureHall.Subjects;
+
+       
+
+            //_context.Subject
+            //.Where(ss => ss.LectureHallID == id)
+            ////.Select(ss => ss.Subject)
+            //.ToList();
+
+        var availableSubjects = _context.Subject
+            .Where(s => !chosenSubjects.Contains(s))
+            .ToList();
+
+
+
+        lectureHall.AvailableSubjects = availableSubjects;
+
+        return lectureHall;
+
+    }
+
+    public async Task CreateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst)
+    {
+
+        var chosenSubjects = _context.Subject
+            .Where(s => subjectIdDst.Contains(s.Id))
+            .ToList();
+
+        var availableSubjects = _context.Subject
+            .Where(s => !subjectIdDst.Contains(s.Id))
+            .ToList();
+
+
+        lectureHall.AvailableSubjects = availableSubjects;
+        
+        foreach (var chosenSubject in chosenSubjects)
+        {
+            lectureHall.AddSubject(chosenSubject);
+        }
+
+
         _context.Add(lectureHall);
         await _context.SaveChangesAsync();
     }
 
-    public async Task UpdateLectureHallAsync(LectureHall lectureHall)
+    public async Task UpdateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst)
     {
-        _context.Update(lectureHall);
+
+        var result = false;
+
+        // Find the student
+        var exist = LectureHallExists(lectureHall.Id);  // _context.Student.Find(lectureHall.Id);
+
+        if (!exist)
+            return;
+
+        
+            // Update the student's properties
+            //student.Name = name;
+            //student.Age = age;
+            //student.Major = major;
+
+            //
+            // Get the chosen subjects
+            var chosenSubjects = _context.Subject
+                .Where(s => subjectIdDst.Contains(s.Id))
+                .ToList();
+
+        // Remove the existing StudentSubject entities for the student
+        //var studentSubjects = _context.StudentSubject
+        //    .Where(ss => ss.StudentId == id)
+        //    .ToList();
+        //_context.StudentSubject.RemoveRange(studentSubjects);
+
+        // Add new StudentSubject entities for the chosen subjects
+
+        var availableSubjects = _context.Subject
+            .Where(s => !subjectIdDst.Contains(s.Id))
+            .ToList();
+
+        lectureHall.AvailableSubjects = availableSubjects;
+
+        foreach (var chosenSubject in chosenSubjects)
+        {
+            lectureHall.AddSubject(chosenSubject);
+        }
+
+
         await _context.SaveChangesAsync();
+
+        //foreach (var subject in chosenSubjects)
+        //    {
+        //        var studentSubject = new StudentSubject
+        //        {
+        //            Student = student,
+        //            Subject = subject
+        //        };
+        //        _context.StudentSubject.Add(studentSubject);
+        //    }
+
+            // Save changes to the database
+            var resultInt = _context.SaveChanges();
+        //    result = resultInt > 0;
+        
+
+        //return result;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //_context.Update(lectureHall);
     }
 
     public async Task DeleteLectureHall(int id)
@@ -372,7 +522,57 @@ public class DatabaseService : IDatabaseService
         return _context.Book.Any(e => e.Id == id);
     }
 
-    #endregion
+    #endregion // Book
+
+    #region Research Worker
+
+    public async Task<ResearchWorker?> GetResearchWorkerAsync(int? Id)
+    {
+        var lectureHall = await _context.ResearchWorker
+           .FirstOrDefaultAsync(m => m.Id == Id);
+
+        return lectureHall;
+    }
+
+    public async Task<IList<ResearchWorker>> GetOllResearchWorkerAsync()
+    {
+        var lectureHalls = await _context.ResearchWorker.ToListAsync();
+
+        return lectureHalls;
+    }
+
+    public async Task CreateResearchWorkerAsync(ResearchWorker researchWorker)
+    {
+        _context.Add(researchWorker);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateResearchWorkerAsync(ResearchWorker researchWorker)
+    {
+        _context.Update(researchWorker);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteResearchWorkerAsync(int? id)
+    {
+        var researchWorker = await GetResearchWorkerAsync(id);
+
+        if (researchWorker == null)
+        {
+            return;
+        }
+
+        _context.ResearchWorker.Remove(researchWorker);
+
+        await _context.SaveChangesAsync();
+    }
+
+    public bool ResearchWorkerExists(int id)
+    {
+        return _context.ResearchWorker.Any(e => e.Id == id);
+    }
+
+    #endregion // Research Worker
 
     #endregion // Public Methods
 }

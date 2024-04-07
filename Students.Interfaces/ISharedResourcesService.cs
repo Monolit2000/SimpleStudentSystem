@@ -8,25 +8,25 @@ namespace Students.Interfaces
     public interface ISharedResourcesService
     {
         /// <summary>
-        /// Gets the resource string associated with the specified resource id.
+        /// Gets the resource string associated with the specified resource Id.
         /// </summary>
-        /// <param name="resourceId">The resource id.</param>
+        /// <param name="resourceId">The resource Id.</param>
         /// <returns>The resource string.</returns>
         public string GetString(string resourceId);
 
         /// <summary>
-        /// Gets the resource string associated with the specified resource id and culture info.
+        /// Gets the resource string associated with the specified resource Id and culture info.
         /// </summary>
-        /// <param name="resourceId">The resource id.</param>
+        /// <param name="resourceId">The resource Id.</param>
         /// <param name="cultureInfo">The culture info.</param>
         /// <returns>The resource string.</returns>
         string GetString(string resourceId, CultureInfo cultureInfo);
 
 
         /// <summary>
-        /// Indexer to get the resource string associated with the specified resource id.
+        /// Indexer to get the resource string associated with the specified resource Id.
         /// </summary>
-        /// <param name="resourceId">The resource id.</param>
+        /// <param name="resourceId">The resource Id.</param>
         /// <returns>The resource string.</returns>
         string this[string resourceId] { get; }
     }

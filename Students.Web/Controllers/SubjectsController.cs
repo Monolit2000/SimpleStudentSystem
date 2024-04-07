@@ -69,7 +69,7 @@ public class SubjectsController : Controller
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-        return View(subject);
+        return RedirectToAction(nameof(Index)); //return View(subject);
     }
 
     // GET: Subjects/Edit/5

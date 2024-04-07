@@ -1,6 +1,6 @@
 ﻿@using Students.Interfaces
 @using System.Globalization
-@model Student
+@model LectureHall
 
 @inject ISharedResourcesService sharedResourcesService
 
@@ -8,7 +8,7 @@
     CultureInfo cultureInfo = CultureInfo.GetCultureInfo(Context.Session.GetString("Culture") ?? "en-US");
 
     Layout = null;
-}   
+}
 
 <div name="subjectsChoice">
     <table>
@@ -47,11 +47,11 @@
                             id="chosenSubjects"
                             name="subjectIdDst">
                         @{
-                            if (Model.StudentSubjects != null)
+                            if (Model.Subjects != null)
                             {
-                                foreach (var ss in Model.StudentSubjects)
+                                foreach (var ss in Model.Subjects)
                                 {
-                                    <option value="@ss.Subject.Id">@ss.Subject.Name</option>
+                                    <option value="@ss.Id">@ss.Name</option>
                                 }
                             }
                         }

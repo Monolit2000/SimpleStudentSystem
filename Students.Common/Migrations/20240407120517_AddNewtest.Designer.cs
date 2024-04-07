@@ -12,8 +12,8 @@ using Students.Common.Data;
 namespace Students.Common.Migrations
 {
     [DbContext(typeof(StudentsContext))]
-    [Migration("20240406175256_TestMigration")]
-    partial class TestMigration
+    [Migration("20240407120517_AddNewtest")]
+    partial class AddNewtest
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,11 +145,16 @@ namespace Students.Common.Migrations
                     b.Property<int>("Credits")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LectureHallId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LectureHallId");
 
                     b.ToTable("Subject");
                 });
@@ -178,6 +183,18 @@ namespace Students.Common.Migrations
                     b.Navigation("Student");
 
                     b.Navigation("Subject");
+                });
+
+            modelBuilder.Entity("Students.Common.Models.Subject", b =>
+                {
+                    b.HasOne("Students.Common.Models.LectureHall", null)
+                        .WithMany("Subjects")
+                        .HasForeignKey("LectureHallId");
+                });
+
+            modelBuilder.Entity("Students.Common.Models.LectureHall", b =>
+                {
+                    b.Navigation("Subjects");
                 });
 
             modelBuilder.Entity("Students.Common.Models.Student", b =>

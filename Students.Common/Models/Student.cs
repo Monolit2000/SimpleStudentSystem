@@ -20,6 +20,8 @@ public class Student
 
     public ICollection<StudentSubject> StudentSubjects { get; set; } = new List<StudentSubject>();
 
+    
+
     [NotMapped]
     public List<Subject> AvailableSubjects { get; set; } = new List<Subject>();
 

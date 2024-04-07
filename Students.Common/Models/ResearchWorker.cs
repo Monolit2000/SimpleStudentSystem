@@ -9,7 +9,7 @@ namespace Students.Common.Models
 {
     public class ResearchWorker
     {
-        public int id {  get; set; }
+        public int Id {  get; set; }
 
         [Required]
         [StringLength(100)]

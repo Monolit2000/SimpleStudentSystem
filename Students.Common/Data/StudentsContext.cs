@@ -37,6 +37,26 @@ public class StudentsContext : DbContext
             .WithMany(s => s.StudentSubjects)
             .HasForeignKey(ss => ss.SubjectId);
 
+        modelBuilder.Entity<LectureHall>()
+          .HasMany(s => s.Subjects)
+          .WithOne(s => s.LectureHall)
+          .HasForeignKey(s => s.LectureHallID);
+
+
+        //modelBuilder.Entity<LectureHallSubject>()
+        //    .HasKey(ss => new { ss.LectureHall, ss.SubjectId });
+
+        //modelBuilder.Entity<LectureHallSubject>()
+        //   .HasOne(ss => ss.LectureHall)
+        //   .WithMany(s => s.LectureHallSubject)
+        //   .HasForeignKey(ss => ss.LectureHallId);
+
+        //modelBuilder.Entity<LectureHallSubject>()
+        //    .HasOne(ss => ss.Subject)
+        //    .WithMany(s => s.LectureHallSubject)
+        //    .HasForeignKey(ss => ss.SubjectId);
+
+
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);

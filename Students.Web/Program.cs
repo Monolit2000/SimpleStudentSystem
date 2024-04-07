@@ -7,12 +7,10 @@ using Students.Common.Data;
 using Students.Interfaces;
 using Students.Services;
 using System.Globalization;
-using Microsoft.Extensions.DependencyInjection;
-using Students.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<StudentsWebContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("StudentsWebContext") ?? throw new InvalidOperationException("Connection string 'StudentsWebContext' not found.")));
+//builder.Services.AddDbContext<StudentsWebContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("StudentsWebContext") ?? throw new InvalidOperationException("Connection string 'StudentsWebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddScoped<ISharedResourcesService, SharedResourcesService>();
@@ -98,7 +96,7 @@ try
 
     app.MapControllerRoute(
         name: "default",
-        pattern: "{controller=Home}/{action=Index}/{id?}");
+        pattern: "{controller=Home}/{action=Index}/{Id?}");
 
     app.Run();
 }

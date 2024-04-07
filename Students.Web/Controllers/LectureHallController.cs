@@ -44,9 +44,14 @@ namespace Students.Web.Controllers
         }
 
         // GET: LectureHalls/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var listOfSubjects = await _databaseService.GetOllSubjectsAsync();
+
+            var newLectureHall = new LectureHall();
+            newLectureHall.AvailableSubjects = listOfSubjects;
+
+            return View(newLectureHall);
         }
 
         // POST: LectureHalls/Create
@@ -54,11 +59,12 @@ namespace Students.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Capacity,Name")] LectureHall lectureHall)
+        public async Task<IActionResult> Create([Bind("Id,Capacity,Name")] LectureHall lectureHall, int[] subjectIdDst)
         {
             if (ModelState.IsValid)
             {
-                await _databaseService.CreateLectureHallAsync(lectureHall); 
+                await _databaseService.CreateLectureHallAsync(lectureHall, subjectIdDst); 
+
                 return RedirectToAction(nameof(Index));
             }
             return View(lectureHall);
@@ -72,11 +78,13 @@ namespace Students.Web.Controllers
                 return NotFound();
             }
 
-            var lectureHall = await _databaseService.GetLectureHallAsync(id);
+            var lectureHall = await _databaseService.GetLectureHallWithSubjectsAsync(id) /*_databaseService.GetLectureHallAsync(id)*/;
+
             if (lectureHall == null)
             {
                 return NotFound();
             }
+
             return View(lectureHall);
         }
 
@@ -85,7 +93,7 @@ namespace Students.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Capacity,Name")] LectureHall lectureHall)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Capacity,Name")] LectureHall lectureHall, int[] subjectIdDst)
         {
             if (id != lectureHall.Id)
             {
@@ -96,7 +104,7 @@ namespace Students.Web.Controllers
             {
                 try
                 {
-                    await _databaseService.UpdateLectureHallAsync(lectureHall);
+                    await _databaseService.UpdateLectureHallAsync(lectureHall, subjectIdDst);
 
                 }
                 catch (DbUpdateConcurrencyException)

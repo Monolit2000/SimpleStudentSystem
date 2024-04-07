@@ -19,6 +19,11 @@ public class Subject
 
     public ICollection<StudentSubject> StudentSubjects { get; set; } = new List<StudentSubject>();
 
+    public int? LectureHallID { get; set; }
+
+    public LectureHall? LectureHall { get; set; }
+
+
     public Subject()
     {
     }
