@@ -1,6 +1,6 @@
 ﻿@using Students.Interfaces
 @using System.Globalization
-@model LectureHall
+@model Subject
 
 @inject ISharedResourcesService sharedResourcesService
 
@@ -26,11 +26,11 @@
                             id="availableSubjects"
                             name="subjectIdSrc">
                         @{
-                            if (Model.AvailableSubjects != null)
+                            if (Model.AvailableStudents != null)
                             {
-                                foreach (var subject in Model.AvailableSubjects)
+                                foreach (var student in Model.AvailableStudents)
                                 {
-                                    <option value="@subject.Id">@subject.Name</option>
+                                    <option value="@student.Id">@student.Name</option>
                                 }
                             }
                         }
@@ -47,13 +47,13 @@
                             id="chosenSubjects"
                             name="subjectIdDst">
                         @{
-                            if (Model.LectureHallSubjects != null)
+                            if (Model.StudentSubjects != null)
                             {
-                                foreach (var ss in Model.LectureHallSubjects)
+                                foreach (var ss in Model.StudentSubjects)
                                 {
-                                    <option value="@ss.Subject.Id">@ss.Subject.Name</option>
+                                    <option value="@ss.Student.Id">@ss.Student.Name</option>
                                 }
-                           }
+                            }
                         }
                     </select>
                 </td>

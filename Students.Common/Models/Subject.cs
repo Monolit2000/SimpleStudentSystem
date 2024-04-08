@@ -1,5 +1,6 @@
 using Students.Common.Attributes;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Students.Common.Models;
 
@@ -19,10 +20,21 @@ public class Subject
 
     public ICollection<StudentSubject> StudentSubjects { get; set; } = new List<StudentSubject>();
 
-    public int? LectureHallID { get; set; }
+    public ICollection<LectureHallSubject> LectureHallSubjects { get; set; } = new List<LectureHallSubject>();
 
-    public LectureHall? LectureHall { get; set; }
+    [NotMapped]
+    public List<Student> AvailableStudents { get; set; } = new List<Student>();
 
+
+    public void AddStudent(Student student)
+    {
+        var subjectStudent = new StudentSubject
+        {
+            Subject = this,
+            Student = student
+        };
+        StudentSubjects.Add(subjectStudent);
+    }
 
     public Subject()
     {

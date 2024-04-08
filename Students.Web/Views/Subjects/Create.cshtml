@@ -15,7 +15,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" onsubmit="selectChosenSubjects()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label">@sharedResourcesService.GetString("Name", cultureInfo)</label>
@@ -26,6 +26,9 @@
                 <label asp-for="Credits" class="control-label">@sharedResourcesService.GetString("Credits", cultureInfo)</label>
                 <input asp-for="Credits" class="form-control" />
                 <span asp-validation-for="Credits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <partial name="_StudentsChoicePartial" model="Model" />
             </div>
             <div class="form-group">
                 <input type="submit" value="@sharedResourcesService.GetString("Create", cultureInfo)" class="btn btn-primary" />
@@ -40,4 +43,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/student_subjects-1.0.2.js"></script>
 }

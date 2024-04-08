@@ -79,6 +79,15 @@ namespace Students.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Autor.
+        /// </summary>
+        public static string Author {
+            get {
+                return ResourceManager.GetString("Author", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Dostępne tematy.
         /// </summary>
         public static string AvailableSubjects {
@@ -93,6 +102,24 @@ namespace Students.Resources {
         public static string BackToList {
             get {
                 return ResourceManager.GetString("BackToList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Książka.
+        /// </summary>
+        public static string Book {
+            get {
+                return ResourceManager.GetString("Book", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tworzenie aplikacji internetowych za pomocą ASP.NET Core.
+        /// </summary>
+        public static string building_Web_apps_with_ASP_NET_Core {
+            get {
+                return ResourceManager.GetString("building Web apps with ASP.NET Core", resourceCulture);
             }
         }
         
@@ -142,6 +169,15 @@ namespace Students.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Dane.
+        /// </summary>
+        public static string Data {
+            get {
+                return ResourceManager.GetString("Data", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Usuń.
         /// </summary>
         public static string Delete {
@@ -169,6 +205,15 @@ namespace Students.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Strona główna.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Indeks studentów.
         /// </summary>
         public static string Index_of_students {
@@ -183,6 +228,15 @@ namespace Students.Resources {
         public static string IndexOfSubjects {
             get {
                 return ResourceManager.GetString("IndexOfSubjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Sala wykładowa.
+        /// </summary>
+        public static string LectureHall {
+            get {
+                return ResourceManager.GetString("LectureHall", resourceCulture);
             }
         }
         
@@ -214,6 +268,24 @@ namespace Students.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Prywatność.
+        /// </summary>
+        public static string Privacy {
+            get {
+                return ResourceManager.GetString("Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Pracownik naukowy.
+        /// </summary>
+        public static string ResearchWorker {
+            get {
+                return ResourceManager.GetString("ResearchWorker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Zapisz.
         /// </summary>
         public static string Save {
@@ -241,11 +313,47 @@ namespace Students.Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Studenci.
+        /// </summary>
+        public static string Students {
+            get {
+                return ResourceManager.GetString("Students", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Przedmiot.
         /// </summary>
         public static string Subject {
             get {
                 return ResourceManager.GetString("Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Tematy.
+        /// </summary>
+        public static string Subjects {
+            get {
+                return ResourceManager.GetString("Subjects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Użyj tej strony, aby wyszczególnić politykę prywatności swojej witryny..
+        /// </summary>
+        public static string Use_this_page_to_detail_your_site_s_privacy_policy_ {
+            get {
+                return ResourceManager.GetString("Use this page to detail your site\'s privacy policy.", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Witamy.
+        /// </summary>
+        public static string Welcome {
+            get {
+                return ResourceManager.GetString("Welcome", resourceCulture);
             }
         }
     }

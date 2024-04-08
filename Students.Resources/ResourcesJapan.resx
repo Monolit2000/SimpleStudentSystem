@@ -123,11 +123,20 @@
   <data name="Are you sure you want to delete this?" xml:space="preserve">
     <value>本当に削除しますか？</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>著者</value>
+  </data>
   <data name="AvailableSubjects" xml:space="preserve">
     <value>受講可能科目</value>
   </data>
   <data name="BackToList" xml:space="preserve">
     <value>リストに戻る</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>書籍</value>
+  </data>
+  <data name="building Web apps with ASP.NET Core" xml:space="preserve">
+    <value>ASP.NET CoreによるWebアプリケーションの構築</value>
   </data>
   <data name="Capacity" xml:space="preserve">
     <value>定員</value>
@@ -144,6 +153,12 @@
   <data name="Credits" xml:space="preserve">
     <value>クレジット</value>
   </data>
+  <data name="Culture" xml:space="preserve">
+    <value>文化</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>データ</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>削除</value>
   </data>
@@ -153,11 +168,17 @@
   <data name="Edit" xml:space="preserve">
     <value>編集</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
   <data name="Index of students" xml:space="preserve">
     <value>学生インデックス</value>
   </data>
   <data name="IndexOfSubjects" xml:space="preserve">
     <value>主題索引</value>
+  </data>
+  <data name="LectureHall" xml:space="preserve">
+    <value>講義室</value>
   </data>
   <data name="Major" xml:space="preserve">
     <value>専攻</value>
@@ -168,8 +189,17 @@
   <data name="Operations" xml:space="preserve">
     <value>オペレーション</value>
   </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>プライバシー</value>
+  </data>
+  <data name="ResearchWorker" xml:space="preserve">
+    <value>研究員</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
   <data name="Student" xml:space="preserve">
     <value>学生</value>
@@ -177,7 +207,19 @@
   <data name="StudentName" xml:space="preserve">
     <value>学生名</value>
   </data>
+  <data name="Students" xml:space="preserve">
+    <value>学生</value>
+  </data>
   <data name="Subject" xml:space="preserve">
     <value>件名</value>
+  </data>
+  <data name="Subjects" xml:space="preserve">
+    <value>授業科目</value>
+  </data>
+  <data name="Use this page to detail your site's privacy policy." xml:space="preserve">
+    <value>このページで、あなたのサイトのプライバシー・ポリシーを詳しく説明してください。</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>ようこそ</value>
   </data>
 </root>

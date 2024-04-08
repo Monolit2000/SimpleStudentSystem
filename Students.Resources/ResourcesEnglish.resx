@@ -123,11 +123,20 @@
   <data name="Are you sure you want to delete this?" xml:space="preserve">
     <value>Are you sure you want to delete this?</value>
   </data>
+  <data name="Author" xml:space="preserve">
+    <value>Author</value>
+  </data>
   <data name="AvailableSubjects" xml:space="preserve">
     <value>Available Subjects</value>
   </data>
   <data name="BackToList" xml:space="preserve">
     <value>Back to List</value>
+  </data>
+  <data name="Book" xml:space="preserve">
+    <value>Book</value>
+  </data>
+  <data name="building Web apps with ASP.NET Core" xml:space="preserve">
+    <value>building Web apps with ASP.NET Core</value>
   </data>
   <data name="Capacity" xml:space="preserve">
     <value>Capacity</value>
@@ -144,6 +153,12 @@
   <data name="Credits" xml:space="preserve">
     <value>Credits</value>
   </data>
+  <data name="Culture" xml:space="preserve">
+    <value>Culture</value>
+  </data>
+  <data name="Data" xml:space="preserve">
+    <value>Data</value>
+  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
@@ -153,11 +168,17 @@
   <data name="Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="Index of students" xml:space="preserve">
     <value>Index of students</value>
   </data>
   <data name="IndexOfSubjects" xml:space="preserve">
     <value>Index of Subjects</value>
+  </data>
+  <data name="LectureHall" xml:space="preserve">
+    <value>Lecture Hall</value>
   </data>
   <data name="Major" xml:space="preserve">
     <value>Major</value>
@@ -168,6 +189,15 @@
   <data name="Operations" xml:space="preserve">
     <value>Operations</value>
   </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Privacy Policy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="ResearchWorker" xml:space="preserve">
+    <value>Research Worker</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
   </data>
@@ -177,7 +207,19 @@
   <data name="StudentName" xml:space="preserve">
     <value>Name and surname</value>
   </data>
+  <data name="Students" xml:space="preserve">
+    <value>Students</value>
+  </data>
   <data name="Subject" xml:space="preserve">
     <value>Subject</value>
+  </data>
+  <data name="Subjects" xml:space="preserve">
+    <value>Subjects</value>
+  </data>
+  <data name="Use this page to detail your site's privacy policy." xml:space="preserve">
+    <value>Use this page to detail your site's privacy policy.</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
   </data>
 </root>

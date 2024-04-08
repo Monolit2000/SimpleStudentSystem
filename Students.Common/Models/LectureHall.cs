@@ -19,8 +19,9 @@ namespace Students.Common.Models
         [StringLength(100)]
         public string Name { get; set; } = string.Empty;
 
-        public ICollection<Subject> Subjects { get; set; } = new List<Subject>();
+        //public ICollection<Subject> Subjects { get; set; } = new List<Subject>();
 
+        public ICollection<LectureHallSubject> LectureHallSubjects { get; set; } = new List<LectureHallSubject>();
 
         [NotMapped]
         public List<Subject> AvailableSubjects { get; set; } = new List<Subject>();
@@ -28,9 +29,13 @@ namespace Students.Common.Models
 
         public void AddSubject(Subject subject)
         {
+            var studentSubject = new LectureHallSubject
+            {
+                LectureHall = this,
+                Subject = subject
+            };
 
-            Subjects.Add(subject);
+            LectureHallSubjects.Add(studentSubject);
         }
-
     }
 }

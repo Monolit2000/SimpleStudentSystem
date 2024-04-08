@@ -30,9 +30,11 @@ public interface IDatabaseService
 
     Task<Subject?> GetSubjectAsync(int? id);
 
-    Task CreateSubjectAsync(Subject subject);
+    Task<Subject?> GetSubjectWithStudentsAsync(int? id);
 
-    Task UpdateSubjectAsync(Subject subject);
+    Task CreateSubjectAsync(Subject subject, int[] subjectIdDst);
+
+    Task UpdateSubjectAsync(Subject subject, int[] subjectIdDst);
 
     Task DeleteSubjectAsync(int id);
 

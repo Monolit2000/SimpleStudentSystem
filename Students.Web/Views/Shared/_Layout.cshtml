@@ -1,4 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@using Students.Interfaces
+@using System.Globalization
+
+@inject ISharedResourcesService sharedResourcesService
+
+@{
+    CultureInfo cultureInfo = CultureInfo.GetCultureInfo(Context.Session.GetString("Culture") ?? "en-US");
+
+}
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,35 +34,35 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">@sharedResourcesService.GetString("Home", cultureInfo)</a>
                         </li>
 
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Data</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@sharedResourcesService.GetString("Data", cultureInfo)</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Students</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">@sharedResourcesService.GetString("Students", cultureInfo)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Subjects" asp-action="Index">Subjects</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Subjects" asp-action="Index">@sharedResourcesService.GetString("Subjects", cultureInfo)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="LectureHall" asp-action="Index">Lecture Hall</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="LectureHall" asp-action="Index">@sharedResourcesService.GetString("LectureHall", cultureInfo)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Book</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">@sharedResourcesService.GetString("Book", cultureInfo)</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="ResearchWorker" asp-action="Index">Research Worker</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="ResearchWorker" asp-action="Index">@sharedResourcesService.GetString("ResearchWorker", cultureInfo)</a>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">@sharedResourcesService.GetString("Privacy", cultureInfo)</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Culture</a>
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">@sharedResourcesService.GetString("Culture", cultureInfo)</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#" data-culture="en-US">English (US)</a></li>
                                 <li><a class="dropdown-item" href="#" data-culture="de-DE">German (Germany)</a></li>

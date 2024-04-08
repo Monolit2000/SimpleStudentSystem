@@ -1,6 +1,6 @@
 ﻿@using Students.Interfaces
 @using System.Globalization
-@model Student
+@model Subject
 
 @inject ISharedResourcesService sharedResourcesService
 
@@ -26,9 +26,9 @@
                             id="availableSubjects"
                             name="subjectIdSrc">
                         @{
-                            if (Model.AvailableSubjects != null)
+                            if (Model.AvailableStudents != null)
                             {
-                                foreach (var subject in Model.AvailableSubjects)
+                                foreach (var subject in Model.AvailableStudents)
                                 {
                                     <option value="@subject.Id">@subject.Name</option>
                                 }

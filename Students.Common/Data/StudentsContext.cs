@@ -17,6 +17,9 @@ public class StudentsContext : DbContext
 
     public DbSet<Book> Book { get; set; } = default!;
     public DbSet<LectureHall> LectureHall { get; set; } = default!;
+
+    public DbSet<LectureHallSubject> LectureHallSubject { get; set; } = default!;
+
     public DbSet<ResearchWorker> ResearchWorker { get; set; } = default!;  
 
 
@@ -37,24 +40,24 @@ public class StudentsContext : DbContext
             .WithMany(s => s.StudentSubjects)
             .HasForeignKey(ss => ss.SubjectId);
 
-        modelBuilder.Entity<LectureHall>()
-          .HasMany(s => s.Subjects)
-          .WithOne(s => s.LectureHall)
-          .HasForeignKey(s => s.LectureHallID);
+        //modelBuilder.Entity<LectureHall>()
+        //  .HasMany(s => s.Subjects)
+        //  .WithOne(s => s.LectureHall)
+        //  .HasForeignKey(s => s.LectureHallID);
 
 
-        //modelBuilder.Entity<LectureHallSubject>()
-        //    .HasKey(ss => new { ss.LectureHall, ss.SubjectId });
+        modelBuilder.Entity<LectureHallSubject>()
+            .HasKey(ss => new { ss.LectureHallId, ss.SubjectId });
 
-        //modelBuilder.Entity<LectureHallSubject>()
-        //   .HasOne(ss => ss.LectureHall)
-        //   .WithMany(s => s.LectureHallSubject)
-        //   .HasForeignKey(ss => ss.LectureHallId);
+        modelBuilder.Entity<LectureHallSubject>()
+           .HasOne(ls => ls.LectureHall)
+           .WithMany(s => s.LectureHallSubjects)
+           .HasForeignKey(ls => ls.LectureHallId);
 
-        //modelBuilder.Entity<LectureHallSubject>()
-        //    .HasOne(ss => ss.Subject)
-        //    .WithMany(s => s.LectureHallSubject)
-        //    .HasForeignKey(ss => ss.SubjectId);
+        modelBuilder.Entity<LectureHallSubject>()
+            .HasOne(ls => ls.Subject)
+            .WithMany(s => s.LectureHallSubjects)
+            .HasForeignKey(ls => ls.SubjectId);
 
 
 
