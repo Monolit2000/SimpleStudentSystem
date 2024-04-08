@@ -59,15 +59,15 @@ namespace Students.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Capacity,Name")] LectureHall lectureHall, int[] subjectIdDst)
+        public async Task<IActionResult> Create(/* [Bind("Id,Capacity,Name")]*/ int id, string name, int capacity, int[] subjectIdDst)
         {
             if (ModelState.IsValid)
             {
-                await _databaseService.CreateLectureHallAsync(lectureHall, subjectIdDst); 
+                var lectureHall = await _databaseService.CreateLectureHallAsync(id, name, capacity, subjectIdDst); 
 
                 return RedirectToAction(nameof(Index));
             }
-            return View(lectureHall);
+            return View();
         }
 
         // GET: LectureHalls/Edit/5
@@ -93,7 +93,7 @@ namespace Students.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Capacity,Name")] LectureHall lectureHall, int[] subjectIdDst)
+        public async Task<IActionResult> Edit(int id, LectureHall lectureHall, int[] subjectIdDst)
         {
             if (id != lectureHall.Id)
             {

@@ -54,7 +54,7 @@ public interface IDatabaseService
     Task<IList<LectureHall>> GetOllLectureHallAsync();
 
     Task<LectureHall?> GetLectureHallWithSubjectsAsync(int? id);
-    Task CreateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst);
+    Task<LectureHall> CreateLectureHallAsync(int id, string name, int capacity, int[] subjectIdDst);
 
     Task UpdateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst);
 

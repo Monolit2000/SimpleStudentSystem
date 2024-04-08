@@ -47,13 +47,13 @@
                             id="chosenSubjects"
                             name="subjectIdDst">
                         @{
-                            if (Model.Subjects != null)
-                            {
+                            // if (Model.Subjects != null)
+                            // {
                                 foreach (var ss in Model.Subjects)
                                 {
                                     <option value="@ss.Id">@ss.Name</option>
                                 }
-                            }
+                           // }
                         }
                     </select>
                 </td>

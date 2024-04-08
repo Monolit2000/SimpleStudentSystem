@@ -349,7 +349,7 @@ public class DatabaseService : IDatabaseService
 
     }
 
-    public async Task CreateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst)
+    public async Task<LectureHall> CreateLectureHallAsync(int id, string name, int capacity, int[] subjectIdDst)
     {
 
         var chosenSubjects = _context.Subject
@@ -359,6 +359,14 @@ public class DatabaseService : IDatabaseService
         var availableSubjects = _context.Subject
             .Where(s => !subjectIdDst.Contains(s.Id))
             .ToList();
+
+        var lectureHall = new LectureHall()
+        {
+            Id = id,
+            Name = name,
+            Capacity = capacity,
+            AvailableSubjects = availableSubjects
+        };
 
 
         lectureHall.AvailableSubjects = availableSubjects;
@@ -371,36 +379,30 @@ public class DatabaseService : IDatabaseService
 
         _context.Add(lectureHall);
         await _context.SaveChangesAsync();
+
+        return lectureHall;
     }
 
-    public async Task UpdateLectureHallAsync(LectureHall lectureHall, int[] subjectIdDst)
+    public async Task UpdateLectureHallAsync(LectureHall lectureHallModel, int[] subjectIdDst)
     {
 
         var result = false;
 
         // Find the student
-        var exist = LectureHallExists(lectureHall.Id);  // _context.Student.Find(lectureHall.Id);
-
-        if (!exist)
+        var lectureHall = await GetLectureHallAsync(lectureHallModel.Id);
+  
+        if (lectureHall == null)
             return;
 
+        lectureHall.Name = lectureHallModel.Name;
+        lectureHall.Capacity = lectureHallModel.Capacity;
         
-            // Update the student's properties
-            //student.Name = name;
-            //student.Age = age;
-            //student.Major = major;
 
-            //
-            // Get the chosen subjects
-            var chosenSubjects = _context.Subject
-                .Where(s => subjectIdDst.Contains(s.Id))
-                .ToList();
-
-        // Remove the existing StudentSubject entities for the student
-        //var studentSubjects = _context.StudentSubject
-        //    .Where(ss => ss.StudentId == id)
-        //    .ToList();
-        //_context.StudentSubject.RemoveRange(studentSubjects);
+        
+        // Get the chosen subjects
+        var chosenSubjects = _context.Subject
+            .Where(s => subjectIdDst.Contains(s.Id))
+            .ToList();
 
         // Add new StudentSubject entities for the chosen subjects
 
@@ -410,46 +412,15 @@ public class DatabaseService : IDatabaseService
 
         lectureHall.AvailableSubjects = availableSubjects;
 
-        foreach (var chosenSubject in chosenSubjects)
-        {
-            lectureHall.AddSubject(chosenSubject);
-        }
+        lectureHall.Subjects = chosenSubjects;
 
+
+        _context.Update(lectureHall);
 
         await _context.SaveChangesAsync();
 
-        //foreach (var subject in chosenSubjects)
-        //    {
-        //        var studentSubject = new StudentSubject
-        //        {
-        //            Student = student,
-        //            Subject = subject
-        //        };
-        //        _context.StudentSubject.Add(studentSubject);
-        //    }
 
-            // Save changes to the database
-            var resultInt = _context.SaveChanges();
-        //    result = resultInt > 0;
-        
-
-        //return result;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
         //_context.Update(lectureHall);
     }
 

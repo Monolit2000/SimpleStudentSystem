@@ -15,7 +15,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" onsubmit="selectChosenSubjects()">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Capacity" class="control-label">@sharedResourcesService.GetString("Capacity", cultureInfo)</label>
@@ -28,10 +28,10 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="@sharedResourcesService.GetString("Create", cultureInfo)" class="btn btn-primary" />
+                <partial name="_LectureHolleSubjectsChoicePartial" model="Model" />
             </div>
             <div class="form-group">
-                <partial name="_LectureHolleSubjectsChoicePartial" model="Model" />
+                <input type="submit" value="@sharedResourcesService.GetString("Create", cultureInfo)" class="btn btn-primary" />
             </div>
         </form>
     </div>
